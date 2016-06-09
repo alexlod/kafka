@@ -73,7 +73,7 @@ class ZookeeperService(KafkaPathResolverMixin, Service):
         node.account.create_file("/mnt/zookeeper.properties", config_file)
 
         start_cmd = "export KAFKA_OPTS=\"%s\";" % (self.kafka_opts + ' ' + self.security_system_properties) \
-            if self.security_config.has_sasl else self.kafka_opts
+            if self.security_config.zk_sasl else self.kafka_opts
         start_cmd += "%s " % self.path.script("zookeeper-server-start.sh", node)
         start_cmd += "/mnt/zookeeper.properties 1>> %(path)s 2>> %(path)s &" % self.logs["zk_log"]
         node.account.ssh(start_cmd)
