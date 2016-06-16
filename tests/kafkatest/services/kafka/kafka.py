@@ -176,7 +176,7 @@ class KafkaService(KafkaPathResolverMixin, JmxMixin, Service):
         # TODO - clean up duplicate configuration logic
         prop_file = cfg.render()
         prop_file += self.render('kafka.properties', node=node, broker_id=self.idx(node),
-                                 security_config=self.security_config)
+                                 security_config=self.security_config, zk_set_acl=self.zk_set_acl)
         return prop_file
 
     def start_cmd(self, node):
