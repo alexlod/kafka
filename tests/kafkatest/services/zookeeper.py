@@ -50,7 +50,7 @@ class ZookeeperService(KafkaPathResolverMixin, Service):
 
     @property
     def security_system_properties(self):
-        return "-Dzookeeper.authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider -Dsun.security.krb5.debug=true " \
+        return "-Dzookeeper.authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider " \
                "-DjaasLoginRenew=3600000 " \
                "-Djava.security.auth.login.config=%s " \
                "-Djava.security.krb5.conf=%s " % (self.security_config.JAAS_CONF_PATH, self.security_config.KRB5CONF_PATH)
